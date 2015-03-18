@@ -65,12 +65,11 @@ abstract public class Task<T> extends Publisher implements Runnable {
 	 * The caller of this method blocks until the result of this
 	 * task is ready.
 	 * @return the result of this task when it is available
+	 * @throws InterruptedException 
 	 */
-	final public PartialResult<T> waitForResult() {
-		//
-		// You must wait until the computation is complete
-		// Fix this
-		//
+	final public PartialResult<T> waitForResult()  {
+		while (!complete)
+			Wrappers.wait(this);;	
 		return getPartialResult();
 	}
 

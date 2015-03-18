@@ -44,6 +44,8 @@ public class Node extends Publisher implements Runnable {
 		//   or taking something off of it
 		// You must fix this
 		//
+		while (this.getRunningTask().getPartialResult()==null)
+			Wrappers.wait(queue);		
 		return this.queue.size();
 	}
 
